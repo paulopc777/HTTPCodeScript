@@ -21,7 +21,6 @@ def PrintLogo():
          
 def Text_Format(Domian:str):
     FormaDomain = ""
-    
     if Domian.find("https://www.") == -1 and Domian.find("www.") == -1 and Domian.find("https://") == -1:
         # FormaDomain = "https://www." + Domian
         FormaDomain = "https://" + Domian
@@ -65,22 +64,21 @@ def Start(ArquivoEntrada:str,ArquivoSaida:str):
     meu_array_200 = []
     
     try:
+        
         with open(ArquivoEntrada , 'r') as arquivo: 
-            for linha in arquivo:
-                Site = Text_Format(linha.strip())
-                if Site == "":
-                    print(f"{Fore.YELLOW}start.py -h")
-                    print(f"{Fore.YELLOW}Input.txt:")
-                    print(f"{Fore.YELLOW}Website.com.br")
-                    print(f"{Fore.YELLOW}www.Site.com.br")
-                    print(f"{Fore.YELLOW}http://www.Site.com.br")
-                    print(f"{Fore.WHITE}")
-                    return
-                else:
-                    if Get_Sattus_Code(Site) == 200:
-                        meu_array_200.append(Site)
-                        return
-                                    
+            for linha in arquivo:               
+                    Site = Text_Format(linha.strip())
+                    if Site == "":
+                        print(f"{Fore.YELLOW}start.py -h")
+                        print(f"{Fore.YELLOW}Input.txt:")
+                        print(f"{Fore.YELLOW}Website.com.br")
+                        print(f"{Fore.YELLOW}www.Site.com.br")
+                        print(f"{Fore.YELLOW}http://www.Site.com.br")
+                        print(f"{Fore.WHITE}")
+                    else:
+                        if Get_Sattus_Code(Site) == 200:
+                            meu_array_200.append(Site)
+                    
         OutputFile = ArquivoSaida + ".txt"            
         Create_Output(meu_array_200,OutputFile)
     except FileNotFoundError:
