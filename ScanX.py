@@ -54,7 +54,7 @@ def Get_Sattus_Code(Dominio:str):
             print(f"{Fore.RED} [-] {Fore.WHITE} - {Dominio} - HTTP CLOSE - {Fore.RED}{Statuscode} ")
             return Statuscode
     except requests.exceptions.ConnectionError or requests.exceptions.ReadTimeout as e:
-        print(f"{Fore.RED} [-] {Fore.WHITE} - {Dominio} - ERROR")
+        print(f"{Fore.RED} [-] {Fore.WHITE} - {Dominio} - {Fore.YELLOW}ERROR")
         
 def Create_Output(Array:list,name:str):
      with open(name, 'w') as arquivo:
@@ -64,14 +64,28 @@ def Create_Output(Array:list,name:str):
 def Start(ArquivoEntrada:str,ArquivoSaida:str):
     meu_array_200 = []
     
-    with open(ArquivoEntrada , 'r') as arquivo: 
-        for linha in arquivo:
-            Site = Text_Format(linha.strip())
-            if Get_Sattus_Code(Site) == 200:
-                meu_array_200.append(Site)
-                
-    OutputFile = ArquivoSaida + ".txt"            
-    Create_Output(meu_array_200,OutputFile)
+    try:
+        with open(ArquivoEntrada , 'r') as arquivo: 
+            for linha in arquivo:
+                Site = Text_Format(linha.strip())
+                if Site == "":
+                    print(f"{Fore.YELLOW}start.py -h")
+                    print(f"{Fore.YELLOW}Input.txt:")
+                    print(f"{Fore.YELLOW}Website.com.br")
+                    print(f"{Fore.YELLOW}www.Site.com.br")
+                    print(f"{Fore.YELLOW}http://www.Site.com.br")
+                    print(f"{Fore.WHITE}")
+                    return
+                else:
+                    if Get_Sattus_Code(Site) == 200:
+                        meu_array_200.append(Site)
+                        return
+                                    
+        OutputFile = ArquivoSaida + ".txt"            
+        Create_Output(meu_array_200,OutputFile)
+    except FileNotFoundError:
+        print(f"{Fore.YELLOW}start.py -h")
+        print(f"{Fore.YELLOW}Input File not Fund")
     
 def Prompt():
     print(f"{Fore.YELLOW}\n")
