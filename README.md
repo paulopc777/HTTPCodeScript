@@ -18,8 +18,19 @@ This script has a unique function of checking the **status code** returned by a 
 ```powershell
 [x] - python ScanX.py -h
 [x] - python ScanX.py -i InpuFile.txt -o OutputFile
+[x] - python ScanX.py -i InpuFile.txt -o OutputFile -sv 403
+[x] - python ScanX.py -i InpuFile.txt -v 
+[x] - python ScanX.py -i google.com -v 
 ```
 
-The **OutputFile** will be all locations or routes that return *status code 200* saved in a .txt
+**-i : Input .txt or URL.**
+
+**-o : Opitional OutputFile.**
+
+**-sv : Saves specific response code.**
+
+**-v : Verbose Mode.**
+
+By default the **OutputFile** will be all locations or routes that return *status code 200* saved in a .txt if you want to change the status code **-sv**
 
 Be happy !
