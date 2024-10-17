@@ -1,36 +1,43 @@
-# ScanX
-## response status codes SCRIPT HTTP
+# ScanX - HTTP Status Code Checker
 
-<img src="img.png" width="100%"/>
+Script de Verificação de Códigos de Status HTTP
 
-This script has a unique function of checking the **status code** returned by a site or route thereof
+<img src="img.png" alt="Diagrama do funcionamento do ScanX" width="100%"/>
 
+O ScanX é um script simples, porém eficiente, que tem como função verificar o código de status HTTP retornado por um site ou uma de suas rotas
 
 ```mermaid
-    graph LR;
-        PYTHON-->GET;
-        GET-->RESPONSE;
-        RESPONSE-->|CODE 200|GET;
+  graph LR;
+    PYTHON-->GET;
+    GET-->RESPONSE;
+    RESPONSE-->|CODE 200|GET;
 ```
 
-### Simple to use script
+## Como Utilizar
 
 ```powershell
-[x] - python ScanX.py -h
-[x] - python ScanX.py -i InpuFile.txt -o OutputFile
-[x] - python ScanX.py -i InpuFile.txt -o OutputFile -sv 403
-[x] - python ScanX.py -i InpuFile.txt -v 
-[x] - python ScanX.py -i google.com -v 
+    [x] - python ScanX.py -h                  
+    [x] - python ScanX.py -i InputFile.txt -o OutputFile    
+    [x] - python ScanX.py -i InputFile.txt -o OutputFile -sv 403    
+    [x] - python ScanX.py -i InputFile.txt -v   
+    [x] - python ScanX.py -i google.com -v   
 ```
 
-**-i : Input .txt or URL.**
+## Parâmetros
 
-**-o : Opitional OutputFile.**
+* -i : Arquivo de entrada (.txt) ou URL.
 
-**-sv : Saves specific response code.**
+* -o : Arquivo de saída (opcional).
 
-**-v : Verbose Mode.**
+* -sv : Salva apenas respostas com o código de status especificado.
 
-By default the **OutputFile** will be all locations or routes that return *status code 200* saved in a .txt if you want to change the status code **-sv**
+* -v : Ativa o modo verbose para uma saída mais detalhada.
 
-Be happy !
+
+## Comportamento Padrão
+
+Por padrão, o OutputFile conterá todas as localizações ou rotas que retornarem o status code 200 salvas em um arquivo .txt. Caso queira modificar o código de status para salvar, use a flag **-sv**.
+
+---
+Seja feliz!
+
